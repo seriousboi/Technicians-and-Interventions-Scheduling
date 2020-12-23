@@ -68,7 +68,7 @@ void assign_instance_data_from_file(TTSPData * instance,FILE * instance_file){
 
 void assign_interventions_list_from_file(Intervention * interventions_list,FILE * interventions_file,int interventions_amount,int domains_amount,int skill_levels_amount){
   Intervention * intervention;
-  char first_line[100];
+  char first_line[1000];
   char preds_buffer[10];
   int number;
   int time_needed;
@@ -78,7 +78,7 @@ void assign_interventions_list_from_file(Intervention * interventions_list,FILE 
   int subcontracting_cost;
   int * required_technicians_amounts;
 
-  fgets(first_line,100,interventions_file);
+  fgets(first_line,1000,interventions_file);
 
   for(int intervention_index = 1 ; intervention_index < interventions_amount + 1 ; intervention_index++){
     intervention = &interventions_list[intervention_index-1];
@@ -122,14 +122,14 @@ void assign_interventions_list_from_file(Intervention * interventions_list,FILE 
 
 void assign_technicians_list_from_file(Technician * technicians_list,FILE * technicians_file,int technicians_amount,int domains_amount){
   Technician * technician;
-  char first_line[100];
+  char first_line[1000];
   char unav_buffer[10];
   int number;
   int * skill_levels;
   int unavailable_days_amount;
   int * unavailability;
 
-  fgets(first_line,100,technicians_file);
+  fgets(first_line,1000,technicians_file);
 
   for(int technician_index = 1 ; technician_index < technicians_amount + 1 ; technician_index++){
     technician = &technicians_list[technician_index-1];
@@ -191,8 +191,6 @@ TTSPData * create_instance_from_folder(char * foldername){
   close_instance_files(files);
   return instance;
 };
-
-/*printf("%s,%d,%d,%d,%d,%d\n",(*instance).name,(*instance).domains_amount,(*instance).skill_levels_amount,(*instance).technicians_amount,(*instance).interventions_amount,(*instance).subcontracting_budget);*/
 
 
 
